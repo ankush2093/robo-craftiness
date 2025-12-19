@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import TestiMonial from './components/TestiMonial'
-import Faq from './components/faq'
+import Faq from './components/Faq'
 
 
 
