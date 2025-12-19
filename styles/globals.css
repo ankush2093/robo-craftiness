@@ -172,19 +172,6 @@ a{
   background-size: 20px 20px;
 }
 
-/* .hero-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.5;
-  pointer-events: none;
-} */
-
 .hero-content-dark {
   position: relative;
   z-index: 2;
@@ -241,13 +228,6 @@ a{
   background: #0052cc;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
-}
-
-.hero-video-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
 }
 
 .hero-video-container {
@@ -369,11 +349,6 @@ a{
   background: var(--bg-white);
   position: relative;
   z-index: 2;
-
- 
-
-  
-  
 }
 
 /* Countdown Timer */
@@ -470,10 +445,7 @@ a{
   margin-right: auto;
 }
 
-/* Swiper Carousel - Courses Section Only
-   Note: All styles are scoped to .courses-swiper to avoid affecting other swipers in the project.
-   For other swipers, create separate scoped classes (e.g., .testimonials-swiper, .gallery-swiper, etc.)
-*/
+/* Swiper Carousel - Courses Section Only */
 .courses-swiper-wrapper {
   position: relative;
   margin-top: 3rem;
@@ -566,8 +538,6 @@ a{
     left: 5px;
   }
 }
-
-
 
 .course-card {
   background: var(--bg-white);
@@ -998,8 +968,6 @@ a{
   margin-right: 0.75rem;
 }
 
-
-
 /* Footer */
 .footer {
   background: var(--text-dark);
@@ -1146,8 +1114,6 @@ a{
     justify-content: center;
   }
 
-
-
   .hero-content-dark h1 {
     font-size: 32px;
   }
@@ -1169,5 +1135,4 @@ a{
     padding: 15px;
   }
 }
-
 
