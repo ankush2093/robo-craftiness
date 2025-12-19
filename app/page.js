@@ -5,6 +5,8 @@ import { config } from '../lib/config'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
+import Faq from './components/faq'
+import TestiMonial from './components/TestiMonial'
 
 
 export default function Home() {
@@ -360,6 +362,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <Faq></Faq>
+
+      {/* Testimonial Section */}
+      <TestiMonial></TestiMonial>
  
 
       {/* Registration Form */}
