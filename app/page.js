@@ -5,6 +5,8 @@ import { config } from '../lib/config'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
+import Faq from './components/faq'
+import TestiMonial from './components/TestiMonial'
 
 
 export default function Home() {
@@ -219,34 +221,66 @@ export default function Home() {
 
       {/* Countdown Timer Section */}
       <section className="section countdown-section">
+        <div className="countdown-background"></div>
         <div className="container">
           <div className={`countdown-container ${isExpired ? 'timer-expired' : ''}`}>
-            <div className="countdown-title">
-              {isExpired ? '⏰ Enrollment Closed' : '⏳ Enrollment Ends In'}
+            <div className="countdown-header">
+              <div className="countdown-icon-wrapper">
+                <i className="fas fa-clock countdown-icon"></i>
+              </div>
+              <div className="countdown-title-wrapper">
+                <h2 className="countdown-title">
+                  {isExpired ? '⏰ Enrollment Closed' : '⏳ Enrollment Ends In'}
+                </h2>
+                {!isExpired && (
+                  <p className="countdown-subtitle">Don't miss out on this exclusive opportunity!</p>
+                )}
+              </div>
             </div>
             {!isExpired ? (
               <div className="countdown-grid">
                 <div className="countdown-item">
-                  <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
-                  <span className="countdown-label">Days</span>
+                  <div className="countdown-item-inner">
+                    <div className="countdown-icon-item">
+                      <i className="fas fa-calendar-day"></i>
+                    </div>
+                    <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
+                    <span className="countdown-label">Days</span>
+                  </div>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
-                  <span className="countdown-label">Hours</span>
+                  <div className="countdown-item-inner">
+                    <div className="countdown-icon-item">
+                      <i className="fas fa-clock"></i>
+                    </div>
+                    <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
+                    <span className="countdown-label">Hours</span>
+                  </div>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                  <span className="countdown-label">Minutes</span>
+                  <div className="countdown-item-inner">
+                    <div className="countdown-icon-item">
+                      <i className="fas fa-hourglass-half"></i>
+                    </div>
+                    <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                    <span className="countdown-label">Minutes</span>
+                  </div>
                 </div>
-                <div className="countdown-item">
-                  <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                  <span className="countdown-label">Seconds</span>
+                <div className="countdown-item countdown-item-seconds">
+                  <div className="countdown-item-inner">
+                    <div className="countdown-icon-item">
+                      <i className="fas fa-stopwatch"></i>
+                    </div>
+                    <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                    <span className="countdown-label">Seconds</span>
+                  </div>
                 </div>
               </div>
             ) : (
-              <p style={{ fontSize: '1.1rem', marginTop: '1rem', color: 'var(--error-color)' }}>
-                Thank you for your interest. Enrollment has closed.
-              </p>
+              <div className="countdown-expired-message">
+                <i className="fas fa-times-circle expired-icon"></i>
+                <p>Thank you for your interest. Enrollment has closed.</p>
+              </div>
             )}
           </div>
         </div>
@@ -360,6 +394,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <Faq></Faq>
+
+      {/* Testimonial Section */}
+      <TestiMonial></TestiMonial>
  
 
       {/* Registration Form */}
