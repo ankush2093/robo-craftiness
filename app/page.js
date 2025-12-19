@@ -1,7 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { config } from '../lib/config'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/css'
+
 
 export default function Home() {
 
@@ -15,6 +19,11 @@ export default function Home() {
   })
   const [formStatus, setFormStatus] = useState({ type: '', message: '' })
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const swiperRef = useRef(null)
+  const [typedText, setTypedText] = useState('')
+  const typingIndexRef = useRef(0)
+  const currentTextIndexRef = useRef(0)
+  const isDeletingRef = useRef(false)
 
   
     const [timeLeft, setTimeLeft] = useState({});
@@ -61,7 +70,49 @@ export default function Home() {
   
       return () => clearInterval(timer);
     }, []);
-  
+
+  // Typing effect with multiple texts
+  useEffect(() => {
+    const texts = ['Productivity', 'Innovation', 'Technology', 'Excellence', 'Success']
+    let timeout
+    
+    const typeText = () => {
+      const currentText = texts[currentTextIndexRef.current]
+      
+      if (!isDeletingRef.current) {
+        // Typing
+        if (typingIndexRef.current < currentText.length) {
+          setTypedText(currentText.slice(0, typingIndexRef.current + 1))
+          typingIndexRef.current++
+          timeout = setTimeout(typeText, 100) // Typing speed
+        } else {
+          // Finished typing, wait then start deleting
+          timeout = setTimeout(() => {
+            isDeletingRef.current = true
+            typingIndexRef.current = currentText.length
+            typeText()
+          }, 2000) // Pause after typing complete
+        }
+      } else {
+        // Deleting
+        if (typingIndexRef.current > 0) {
+          setTypedText(currentText.slice(0, typingIndexRef.current - 1))
+          typingIndexRef.current--
+          timeout = setTimeout(typeText, 50) // Deleting speed (faster)
+        } else {
+          // Finished deleting, move to next text
+          isDeletingRef.current = false
+          currentTextIndexRef.current = (currentTextIndexRef.current + 1) % texts.length
+          typingIndexRef.current = 0
+          timeout = setTimeout(typeText, 500) // Pause before next text
+        }
+      }
+    }
+    
+    typeText()
+    
+    return () => clearTimeout(timeout)
+  }, [])
 
   // WhatsApp redirect
   const handleEnroll = (courseName) => {
@@ -124,11 +175,7 @@ export default function Home() {
             <li><a href="#register" className="nav-link-white">Students</a></li>
           </ul>
           <div className="nav-right">
-            <i className="bi bi-cart3 nav-cart-icon"></i>
-            <button className="btn-login">
-              <span>Log In</span>
-              <i className="bi bi-arrow-right"></i>
-            </button>
+       
           </div>
         </div>
       </nav>
@@ -139,8 +186,11 @@ export default function Home() {
         <div className="container">
           <div className="hero-content-dark">
             
-            <h1>Explore <span>Productivity</span></h1>
-            <button className="btn-explore-courses">
+            <h1>Explore <span>{typedText}<span className="typing-cursor">|</span></span></h1>
+            <p className='text-white'>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+            </p>
+            <button onClick={() => window.location.href = '#courses'} className="btn-explore-courses">
               Explore {config.brandName} Courses
             </button>
             <div className="hero-video-container">
@@ -207,39 +257,87 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title">Courses</h2>
           <p className="section-subtitle">Choose the course that fits your career goals</p>
-          <div className="courses-grid">
+          <div className="courses-swiper-wrapper">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper
+              }}
+              loop={true}
+              loopAdditionalSlides={2}
+              loopedSlides={3}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 20
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 30
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30
+                }
+              }}
+              className="courses-swiper"
+            >
             {config.courses.map((course) => (
-              <div key={course.id} className="course-card fade-in">
-            <img className="course-image" src="https://media.istockphoto.com/id/1414699113/photo/small-robot-assistant-work-with-graphic-display.jpg?s=612x612&w=0&k=20&c=gGfba4h97L1tFjVWkPTiZUlfNHtkrf0fHhsmkY4S5Ng=" alt="Courses" />
+              <SwiperSlide key={course.id}>
+                <div className="course-card fade-in">
+                  <img className="course-image" src="https://media.istockphoto.com/id/1414699113/photo/small-robot-assistant-work-with-graphic-display.jpg?s=612x612&w=0&k=20&c=gGfba4h97L1tFjVWkPTiZUlfNHtkrf0fHhsmkY4S5Ng=" alt="Courses" />
 
-                <div className="course-header">
-                  <div>
-                    <h3 className="course-title">{course.name}</h3>
-                    <div className="course-meta">
-                      <span>{course.language}</span>
-                      <span>•</span>
-                      <span>{course.students} Students</span>
+                  <div className="course-header">
+                    <div>
+                      <h3 className="course-title">{course.name}</h3>
+                      <div className="course-meta">
+                        <span>{course.language}</span>
+                        <span>•</span>
+                        <span>{course.students} Students</span>
+                      </div>
                     </div>
                   </div>
+                  {/* <p className="course-description">{course.description}</p> */}
+                  <div className="course-actions">
+                    <button
+                      className="btn-syllabus"
+                      onClick={() => setShowSyllabus(course)}
+                    >
+                      View Syllabus
+                    </button>
+                    <button
+                      className="btn-enroll"
+                      onClick={() => handleEnroll(course.name)}
+                      disabled={isExpired}
+                    >
+                      {isExpired ? 'Enrollment Closed' : 'Enroll Now'}
+                    </button>
+                  </div>
+
+                  <a href='' className='btn-course-price mt-2'>Staring form Rs 4999</a>
                 </div>
-                {/* <p className="course-description">{course.description}</p> */}
-                <div className="course-actions">
-                  <button
-                    className="btn-syllabus"
-                    onClick={() => setShowSyllabus(course)}
-                  >
-                    View Syllabus
-                  </button>
-                  <button
-                    className="btn-enroll"
-                    onClick={() => handleEnroll(course.name)}
-                    disabled={isExpired}
-                  >
-                    {isExpired ? 'Enrollment Closed' : 'Enroll Now'}
-                  </button>
-                </div>
-              </div>
+              </SwiperSlide>
             ))}
+          </Swiper>
+          <button 
+            className="courses-swiper-button courses-swiper-button-prev"
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
+            <i className="fas fa-chevron-left"></i>
+          </button>
+          <button 
+            className="courses-swiper-button courses-swiper-button-next"
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <i className="fas fa-chevron-right"></i>
+          </button>
           </div>
         </div>
       </section>
@@ -262,29 +360,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Pricing Section */}
-      <section className="section pricing-section">
-        <div className="container">
-          <h2 className="section-title">Pricing</h2>
-          <p className="section-subtitle">Get detailed pricing and special offers</p>
-          <div className="pricing-card">
-            <p className="pricing-text">
-              For detailed pricing information and special offers, contact us via WhatsApp. 
-              We offer flexible payment plans and early bird discounts.
-            </p>
-            <a
-              href={`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent('Hi, I want to know about pricing and offers')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp"
-            >
-              <i className="bi bi-whatsapp"></i>
-              Contact on WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
+ 
 
       {/* Registration Form */}
       <section id="register" className="section registration-section">
@@ -393,6 +469,3 @@ export default function Home() {
     </main>
   )
 }
-
-
-

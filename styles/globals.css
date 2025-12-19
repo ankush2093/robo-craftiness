@@ -10,6 +10,7 @@
  
   --seconadary-main-color:#7ac442;
   --seconadary-main-color-dark:#5f8a32;
+--gradient-color: linear-gradient(to right, #0f3d66, #7ac442);
 
   --primary-color: #000000;
   --accent-color: #0066ff;
@@ -40,6 +41,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a{
+  text-decoration: none !important;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -53,7 +58,8 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: none;
+  border-bottom: 1px solid var(--border-color);
+  
 }
 
 .nav-container {
@@ -158,7 +164,7 @@ body {
   background-image: url(/images/pattern.jpg);
   padding: 3rem 0 0;
   position: relative;
-  min-height: 85vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -196,18 +202,39 @@ body {
   font-size: 48px;
 }
 
+.hero-content-dark h1 span {
+  color: aqua;
+}
+
+/* Typing cursor animation */
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+  color: var(--seconadary-main-color);
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 .btn-explore-courses {
   background: #0066ff;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-bottom: 3rem;
-  transition: background 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 28px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
 }
 
 .btn-explore-courses:hover {
@@ -441,7 +468,103 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Swiper Carousel - Courses Section Only
+   Note: All styles are scoped to .courses-swiper to avoid affecting other swipers in the project.
+   For other swipers, create separate scoped classes (e.g., .testimonials-swiper, .gallery-swiper, etc.)
+*/
+.courses-swiper-wrapper {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.courses-swiper {
+  position: relative;
+}
+
+.courses-swiper .swiper-slide {
+  height: auto;
+}
+
+/* Hide default Swiper arrows */
+.courses-swiper .swiper-button-next,
+.courses-swiper .swiper-button-prev {
+  display: none !important;
+}
+
+/* Custom Font Awesome Navigation Buttons */
+.courses-swiper-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--main-color);
+  color: var(--bg-white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(15, 61, 102, 0.3);
+  transition: all 0.3s ease;
+}
+
+.courses-swiper-button:hover {
+  background: var(--seconadary-main-color);
+  box-shadow: 0 6px 20px rgba(122, 196, 66, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.courses-swiper-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.courses-swiper-button i {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.courses-swiper-button-prev {
+  left: -25px;
+}
+
+.courses-swiper-button-next {
+  right: -25px;
+}
+
+@media (max-width: 1024px) {
+  .courses-swiper-button-next {
+    right: 10px;
+  }
   
+  .courses-swiper-button-prev {
+    left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .courses-swiper-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .courses-swiper-button i {
+    font-size: 12px;
+  }
+  
+  .courses-swiper-button-next {
+    right: 5px;
+  }
+  
+  .courses-swiper-button-prev {
+    left: 5px;
+  }
 }
 
 
@@ -458,7 +581,6 @@ body {
 
 .course-card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px);
   border-color: var(--text-dark);
 }
 
@@ -565,6 +687,23 @@ body {
 }
 
 .btn-syllabus:hover {
+  background: var(--bg-white);
+  color: var(--seconadary-main-color);
+  border-color: var(--seconadary-main-color);
+}
+
+.btn-course-price {
+  background: var(--gradient-color);
+  color: #fff;
+  border: 1px solid var(--border-color);
+  padding: 6px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-course-price:hover {
   background: var(--bg-white);
   color: var(--seconadary-main-color);
   border-color: var(--seconadary-main-color);
@@ -785,7 +924,7 @@ body {
 .modal-content {
   background: var(--bg-white);
   border-radius: 12px;
-  padding: 2.5rem;
+  padding:15px;
   max-width: 700px;
   width: 100%;
   max-height: 85vh;
@@ -807,7 +946,7 @@ body {
 .modal-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: #fff;
   letter-spacing: -0.5px;
 }
 
@@ -816,7 +955,7 @@ body {
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--text-light);
+  color: red;
   transition: color 0.2s ease;
   line-height: 1;
   padding: 0;
@@ -838,16 +977,19 @@ body {
 
 .syllabus-item {
   padding: 1rem;
+  color: #fff;
   margin-bottom: 0.75rem;
-  background: var(--bg-light);
+  background: var(--gradient-color);
   border-radius: 6px;
-  border-left: 3px solid var(--text-dark);
+  border-left: 3px solid var(--seconadary-main-color);
   transition: all 0.2s ease;
 }
 
 .syllabus-item:hover {
   background: var(--bg-gray);
   transform: translateX(4px);
+  color: var(--main-color-dark);
+  border-left: 3px solid var(--accent-color);
 }
 
 .syllabus-number {
@@ -856,50 +998,7 @@ body {
   margin-right: 0.75rem;
 }
 
-/* Pricing Section */
-.pricing-section {
-  background: var(--bg-white);
-  text-align: center;
-}
 
-.pricing-card {
-  background: var(--bg-light);
-  border-radius: 12px;
-  padding: 3rem;
-  max-width: 500px;
-  margin: 0 auto;
-  border: 1px solid var(--border-color);
-}
-
-.pricing-text {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: var(--text-light);
-  line-height: 1.7;
-}
-
-.btn-whatsapp {
-  background: #25d366;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-}
-
-.btn-whatsapp:hover {
-  background: #20ba5a;
-  transform: translateY(-1px);
-  color: white;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-}
 
 /* Footer */
 .footer {
@@ -991,7 +1090,7 @@ body {
   }
 
   .countdown-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .section-title {
@@ -1008,7 +1107,7 @@ body {
   }
 
   .course-actions {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .btn-enroll,
@@ -1047,9 +1146,7 @@ body {
     justify-content: center;
   }
 
-  .hero-section-dark {
-    min-height: 60vh;
-  }
+
 
   .hero-content-dark h1 {
     font-size: 32px;
@@ -1069,6 +1166,8 @@ body {
   }
 
   .modal-content {
-    padding: 1.5rem;
+    padding: 15px;
   }
 }
+
+
