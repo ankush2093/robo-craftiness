@@ -3485,3 +3485,19 @@ a {
     font-size: 0.95rem;
   }
 }
+
+
+
+/* Hide Unhide Navbar on scroll */
+
+@media (max-width: 991px) {
+  .hide-on-mob-view {
+      display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .hide-on-desktop {
+      display: none !important;
+  }
+}

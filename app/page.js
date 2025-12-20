@@ -10,6 +10,9 @@ import Faq from './components/Faq'
 import Founder from './components/Founder'
 import Contactus from './components/Contactus'
 import PopupRegister from './PopupRegister'
+import Gallery from './components/Gallery'
+import About_Us from './components/About_Us'
+import MissonVision from './components/MissonVision'
 
 
 
@@ -366,6 +369,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* About Us Section */}
+      <About_Us></About_Us>
+
+      {/* Gallery Section */}
+      <Gallery></Gallery>
+
+      {/* Mission & Vision Section */}
+      <MissonVision></MissonVision>
 
       {/* FAQ Section */}
       <Faq></Faq>

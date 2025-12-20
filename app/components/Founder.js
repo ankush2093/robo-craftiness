@@ -70,7 +70,7 @@ const Founder = () => {
   ]
 
   return (
-    <section className="founder-section">
+    <section className="founder-section section">
       <div className="container">
         <div className="founder-header">
           <h2 className="founder-title">Meet Our <span className="founder-title-highlight">Founders</span></h2>
