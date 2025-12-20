@@ -9,20 +9,13 @@ import TestiMonial from './components/TestiMonial'
 import Faq from './components/Faq'
 import Founder from './components/Founder'
 import Contactus from './components/Contactus'
+import PopupRegister from './PopupRegister'
 
 
 
 export default function Home() {
-
+  const [showPopupRegister, setShowPopupRegister] = useState(null) // null = closed, string = course name
   const [showSyllabus, setShowSyllabus] = useState(null)
-  const [formData, setFormData] = useState({
-    fullName: '',
-    mobileNumber: '',
-    email: '',
-    preferredLanguage: '',
-    appliedFor: ''
-  })
-  const [formStatus, setFormStatus] = useState({ type: '', message: '' })
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const swiperRef = useRef(null)
   const [typedText, setTypedText] = useState('')
@@ -30,60 +23,60 @@ export default function Home() {
   const currentTextIndexRef = useRef(0)
   const isDeletingRef = useRef(false)
 
-  
-    const [timeLeft, setTimeLeft] = useState({});
-    const [isExpired, setIsExpired] = useState(false);
-  
-    // Default enrollment deadline
-    const defaultDeadline = "2026-01-15T23:59:59+05:30"; // YYYY-MM-DDTHH:MM:SS format
-  
-    useEffect(() => {
-      const calculateTimeLeft = () => {
-        const deadline = new Date(defaultDeadline).getTime(); // default date
-        const now = new Date().getTime();
-        const difference = deadline - now;
-  
-        if (difference <= 0) {
-          setIsExpired(true);
-          return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-        }
-  
-        return {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000),
-        };
+
+  const [timeLeft, setTimeLeft] = useState({});
+  const [isExpired, setIsExpired] = useState(false);
+
+  // Default enrollment deadline
+  const defaultDeadline = "2026-01-15T23:59:59+05:30"; // YYYY-MM-DDTHH:MM:SS format
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const deadline = new Date(defaultDeadline).getTime(); // default date
+      const now = new Date().getTime();
+      const difference = deadline - now;
+
+      if (difference <= 0) {
+        setIsExpired(true);
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
       };
-  
-      setTimeLeft(calculateTimeLeft());
-  
-      const timer = setInterval(() => {
-        const time = calculateTimeLeft();
-        setTimeLeft(time);
-  
-        if (
-          time.days === 0 &&
-          time.hours === 0 &&
-          time.minutes === 0 &&
-          time.seconds === 0
-        ) {
-          setIsExpired(true);
-          clearInterval(timer);
-        }
-      }, 1000);
-  
-      return () => clearInterval(timer);
-    }, []);
+    };
+
+    setTimeLeft(calculateTimeLeft());
+
+    const timer = setInterval(() => {
+      const time = calculateTimeLeft();
+      setTimeLeft(time);
+
+      if (
+        time.days === 0 &&
+        time.hours === 0 &&
+        time.minutes === 0 &&
+        time.seconds === 0
+      ) {
+        setIsExpired(true);
+        clearInterval(timer);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // Typing effect with multiple texts
   useEffect(() => {
     const texts = ['Productivity', 'Innovation', 'Technology', 'Excellence', 'Success']
     let timeout
-    
+
     const typeText = () => {
       const currentText = texts[currentTextIndexRef.current]
-      
+
       if (!isDeletingRef.current) {
         // Typing
         if (typingIndexRef.current < currentText.length) {
@@ -113,9 +106,9 @@ export default function Home() {
         }
       }
     }
-    
+
     typeText()
-    
+
     return () => clearTimeout(timeout)
   }, [])
 
@@ -126,53 +119,13 @@ export default function Home() {
     window.open(`https://wa.me/${config.whatsappNumber}?text=${message}`, '_blank')
   }
 
-  // Form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setFormStatus({ type: '', message: '' })
-
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        setFormStatus({ type: 'success', message: 'Registration successful! We will contact you soon.' })
-        setFormData({
-          fullName: '',
-          mobileNumber: '',
-          email: '',
-          preferredLanguage: '',
-          appliedFor: ''
-        })
-      } else {
-        setFormStatus({ type: 'error', message: data.error || 'Registration failed. Please try again.' })
-      }
-    } catch (error) {
-      setFormStatus({ type: 'error', message: 'Network error. Please try again.' })
-    }
-  }
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
   return (
     <main>
       {/* Navigation */}
       <nav className="navbar-dark">
         <div className="nav-container">
           <div className="nav-brand">
-          <img src="/images/logo_craftiness.png" alt="RoboCraftiness" />
+            <img src="/images/logo_craftiness.png" alt="RoboCraftiness" />
           </div>
           <ul className="nav-links-white">
             <li><a href="#courses" className="nav-link-white">Courses</a></li>
@@ -180,7 +133,7 @@ export default function Home() {
             <li><a href="#register" className="nav-link-white">Students</a></li>
           </ul>
           <div className="nav-right">
-       
+
           </div>
         </div>
       </nav>
@@ -190,7 +143,7 @@ export default function Home() {
         <div className="hero-pattern"></div>
         <div className="container">
           <div className="hero-content-dark">
-            
+
             <h1>Explore <span>{typedText}<span className="typing-cursor">|</span></span></h1>
             <p className='text-white'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
@@ -232,6 +185,22 @@ export default function Home() {
                 <i className="fas fa-clock countdown-icon"></i>
               </div>
               <div className="countdown-title-wrapper">
+                <button
+                  onClick={() => setShowPopupRegister(true)}
+                  className="btn-register-popup"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--main-color) 0%, var(--seconadary-main-color) 100%)',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                    marginBottom: '1rem'
+                  }}
+                >
+                  Register Now
+                </button>
                 <h2 className="countdown-title">
                   {isExpired ? '⏰ Enrollment Closed' : '⏳ Enrollment Ends In'}
                 </h2>
@@ -326,55 +295,55 @@ export default function Home() {
               }}
               className="courses-swiper"
             >
-            {config.courses.map((course) => (
-              <SwiperSlide key={course.id}>
-                <div className="course-card fade-in">
-                  <img className="course-image" src="https://media.istockphoto.com/id/1414699113/photo/small-robot-assistant-work-with-graphic-display.jpg?s=612x612&w=0&k=20&c=gGfba4h97L1tFjVWkPTiZUlfNHtkrf0fHhsmkY4S5Ng=" alt="Courses" />
+              {config.courses.map((course) => (
+                <SwiperSlide key={course.id}>
+                  <div className="course-card fade-in">
+                    <img className="course-image" src="https://media.istockphoto.com/id/1414699113/photo/small-robot-assistant-work-with-graphic-display.jpg?s=612x612&w=0&k=20&c=gGfba4h97L1tFjVWkPTiZUlfNHtkrf0fHhsmkY4S5Ng=" alt="Courses" />
 
-                  <div className="course-header">
-                    <div>
-                      <h3 className="course-title">{course.name}</h3>
-                      <div className="course-meta">
-                        <span>{course.language}</span>
-                        <span>•</span>
-                        <span>{course.students} Students</span>
+                    <div className="course-header">
+                      <div>
+                        <h3 className="course-title">{course.name}</h3>
+                        <div className="course-meta">
+                          <span>{course.language}</span>
+                          <span>•</span>
+                          <span>{course.students} Students</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <p className="course-description">{course.description}</p> */}
-                  <div className="course-actions">
-                    <button
-                      className="btn-syllabus"
-                      onClick={() => setShowSyllabus(course)}
-                    >
-                      View Syllabus
-                    </button>
-                    <button
-                      className="btn-enroll"
-                      onClick={() => handleEnroll(course.name)}
-                      disabled={isExpired}
-                    >
-                      {isExpired ? 'Enrollment Closed' : 'Enroll Now'}
-                    </button>
-                  </div>
+                    {/* <p className="course-description">{course.description}</p> */}
+                    <div className="course-actions">
+                      <button
+                        className="btn-syllabus"
+                        onClick={() => setShowSyllabus(course)}
+                      >
+                        View Syllabus
+                      </button>
+                      <button
+                        className="btn-enroll"
+                        onClick={() => setShowPopupRegister(course.name)}
+                        disabled={isExpired}
+                      >
+                        {isExpired ? 'Enrollment Closed' : 'Enroll Now'}
+                      </button>
+                    </div>
 
-                  <a href='' className='btn-course-price mt-2'>Staring form Rs 4999</a>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <button 
-            className="courses-swiper-button courses-swiper-button-prev"
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <button 
-            className="courses-swiper-button courses-swiper-button-next"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <i className="fas fa-chevron-right"></i>
-          </button>
+                    <a href='' className='btn-course-price mt-2'>Staring form Rs 4999</a>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button
+              className="courses-swiper-button courses-swiper-button-prev"
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <button
+              className="courses-swiper-button courses-swiper-button-next"
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <i className="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </section>
@@ -406,95 +375,19 @@ export default function Home() {
 
       {/* Founder Section */}
       <Founder></Founder>
- 
-      {/* Registration Form */}
-      <section id="register" className="section registration-section">
-        <div className="container">
-          <h2 className="section-title">Student Registration</h2>
-          <p className="section-subtitle">Fill out the form below to get started</p>
-          <div className="form-container">
-            {formStatus.message && (
-              <div className={`alert alert-${formStatus.type === 'success' ? 'success' : 'error'}`}>
-                {formStatus.message}
-              </div>
-            )}
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label className="form-label">Full Name *</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  className="form-control"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Enter your full name"
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Mobile Number *</label>
-                <input
-                  type="tel"
-                  name="mobileNumber"
-                  className="form-control"
-                  value={formData.mobileNumber}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Enter your mobile number"
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Enter your email address"
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Preferred Language *</label>
-                <select
-                  name="preferredLanguage"
-                  className="form-control"
-                  value={formData.preferredLanguage}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Select Language</option>
-                  <option value="English">English</option>
-                  <option value="Hindi">Hindi</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label className="form-label">Applied For *</label>
-                <select
-                  name="appliedFor"
-                  className="form-control"
-                  value={formData.appliedFor}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Select Course</option>
-                  <option value="IoT Technology">IoT Technology</option>
-                  <option value="Robotics Technology">Robotics Technology</option>
-                </select>
-              </div>
-              <button type="submit" className="btn-submit">
-                Submit Registration
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+
 
       {/* Contact Section */}
       <Contactus></Contactus>
 
+
+
+      {/* Popup Register */}
+      <PopupRegister
+        isOpen={!!showPopupRegister}
+        courseName={showPopupRegister}
+        onClose={() => setShowPopupRegister(null)}
+      />
       {/* Syllabus Modal */}
       {showSyllabus && (
         <div className="syllabus-modal active" onClick={() => setShowSyllabus(null)}>

@@ -1,3 +1,4 @@
+import Footer from './components/Footer'
 import './globals.css'
 
 export const metadata = {
@@ -16,11 +17,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
-        <footer className="footer">
-          <div className="container">
-            <p>&copy; 2024 Robotics & AI. All rights reserved.</p>
-          </div>
-        </footer>
+       <Footer></Footer>
       </body>
     </html>
   )
