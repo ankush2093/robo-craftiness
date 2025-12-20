@@ -7,6 +7,8 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import TestiMonial from './components/TestiMonial'
 import Faq from './components/Faq'
+import Founder from './components/Founder'
+import Contactus from './components/Contactus'
 
 
 
@@ -33,7 +35,7 @@ export default function Home() {
     const [isExpired, setIsExpired] = useState(false);
   
     // Default enrollment deadline
-    const defaultDeadline = "2025-12-20T18:00:00"; // YYYY-MM-DDTHH:MM:SS format
+    const defaultDeadline = "2026-01-15T23:59:59+05:30"; // YYYY-MM-DDTHH:MM:SS format
   
     useEffect(() => {
       const calculateTimeLeft = () => {
@@ -401,8 +403,10 @@ export default function Home() {
 
       {/* Testimonial Section */}
       <TestiMonial></TestiMonial>
- 
 
+      {/* Founder Section */}
+      <Founder></Founder>
+ 
       {/* Registration Form */}
       <section id="register" className="section registration-section">
         <div className="container">
@@ -487,6 +491,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Contact Section */}
+      <Contactus></Contactus>
 
       {/* Syllabus Modal */}
       {showSyllabus && (
