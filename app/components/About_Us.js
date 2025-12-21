@@ -57,10 +57,7 @@ const About_Us = () => {
                 loading="lazy"
               />
               <div className="about-us-image-overlay"></div>
-              <div className="about-us-image-badge">
-                <i className="fas fa-award"></i>
-                <span>Trusted by 15K+ Students</span>
-              </div>
+             
             </div>
             <div className="about-us-image-decoration"></div>
           </div>
