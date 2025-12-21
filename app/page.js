@@ -13,6 +13,7 @@ import PopupRegister from './PopupRegister'
 import Gallery from './components/Gallery'
 import About_Us from './components/About_Us'
 import MissonVision from './components/MissonVision'
+import MobileBottomNav from './components/MobileBottomNav'
 
 
 
@@ -20,6 +21,19 @@ export default function Home() {
   const [showPopupRegister, setShowPopupRegister] = useState(null) // null = closed, string = course name
   const [showSyllabus, setShowSyllabus] = useState(null)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
+    return () => {
+      document.body.classList.remove('menu-open')
+    }
+  }, [isMobileMenuOpen])
   const swiperRef = useRef(null)
   const [typedText, setTypedText] = useState('')
   const typingIndexRef = useRef(0)
@@ -131,15 +145,73 @@ export default function Home() {
             <img src="/images/logo_craftiness.png" alt="RoboCraftiness" />
           </div>
           <ul className="nav-links-white">
-            <li><a href="#courses" className="nav-link-white">Courses</a></li>
-            <li><a href="#why-us" className="nav-link-white">About</a></li>
-            <li><a href="#register" className="nav-link-white">Students</a></li>
+            <li><a href="#courses" className="nav-link-white" onClick={() => setIsMobileMenuOpen(false)}>Courses</a></li>
+            <li><a href="#why-us" className="nav-link-white" onClick={() => setIsMobileMenuOpen(false)}>About</a></li>
+            <li><a href="#register" className="nav-link-white" onClick={() => setIsMobileMenuOpen(false)}>Students</a></li>
           </ul>
           <div className="nav-right">
-
+            {/* Mobile Menu Toggle Button */}
+            <button 
+              className="mobile-menu-toggle"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'active' : ''}`}></span>
+              <span className={`hamburger-line ${isMobileMenuOpen ? 'active' : ''}`}></span>
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Sidebar Menu */}
+      <div className={`mobile-sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-sidebar-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+        <div className="mobile-sidebar-content">
+          <div className="mobile-sidebar-header">
+            <img src="/images/logo_craftiness.png" alt="RoboCraftiness" className="mobile-sidebar-logo" />
+            <button 
+              className="mobile-sidebar-close"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+          <ul className="mobile-sidebar-links">
+            <li>
+              <a href="#courses" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-book"></i>
+                <span>Courses</span>
+              </a>
+            </li>
+            <li>
+              <a href="#why-us" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-info-circle"></i>
+                <span>About</span>
+              </a>
+            </li>
+            <li>
+              <a href="#register" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-user-graduate"></i>
+                <span>Students</span>
+              </a>
+            </li>
+            <li>
+              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-envelope"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+            <li>
+              <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-images"></i>
+                <span>Gallery</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="hero-section-dark">
@@ -418,6 +490,9 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* Mobile Bottom Navigation */}
+      <MobileBottomNav />
     </main>
   )
 }
