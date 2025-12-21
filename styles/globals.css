@@ -1,5 +1,5 @@
-* {
-  margin: 0;
+body{
+  margin: 0 ;
   padding: 0;
   box-sizing: border-box;
 }
@@ -72,7 +72,7 @@ a {
 
 .nav-container {
   margin: 0 auto;
-  padding: 0 3rem;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,7 +82,7 @@ a {
   width: 100%;
 }
 .nav-brand img {
-  max-width: 250px;
+  max-width: 210px;
   object-fit: contain;
 
   border-radius: 40px;
@@ -217,7 +217,7 @@ a {
 /* Hero Section - Dark Theme */
 .hero-section-dark {
   background-image: url(/images/pattern.jpg);
-  padding: 3rem 0 0;
+  padding: 5rem 0 0;
   position: relative;
   min-height: 75vh;
   display: flex;
@@ -1226,7 +1226,6 @@ a {
 /* Responsive */
 @media (max-width: 768px) {
   .nav-container {
-    padding: 0 1.5rem;
     flex-wrap: wrap;
   }
 
@@ -1352,9 +1351,7 @@ a {
 }
 
 @media (max-width: 480px) {
-  .nav-container {
-    padding: 0 1rem;
-  }
+
 
   .nav-logo-white {
     font-size: 1.5rem;
@@ -3557,16 +3554,14 @@ a {
     padding: 10px 15px;
   }
 
-  .nav-container {
-    padding: 0 1rem;
-  }
+  
 
   .nav-brand {
     width: auto;
   }
 
   .nav-brand img {
-    max-width: 180px;
+    max-width: 150px;
   }
 
   .nav-links-white {
@@ -3586,11 +3581,6 @@ a {
   }
   
   /* Add padding to body to prevent content from being hidden behind bottom nav */
-  body {
-    padding-bottom: 70px;
-    padding-top: 70px;
-  }
-
   /* Prevent body scroll when menu is open */
   body.menu-open {
     overflow: hidden;
@@ -3609,10 +3599,6 @@ a {
   }
   
   /* Add padding to body to account for fixed navbar */
-  body {
-    padding-top: 70px;
-  }
-  
   .hide-on-desktop {
     display: none !important;
   }

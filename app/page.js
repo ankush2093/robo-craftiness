@@ -140,7 +140,7 @@ export default function Home() {
     <main>
       {/* Navigation */}
       <nav className="navbar-dark">
-        <div className="nav-container">
+        <div className="nav-container container">
           <div className="nav-brand">
             <img src="/images/logo_craftiness.png" alt="RoboCraftiness" />
           </div>

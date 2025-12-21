@@ -1,4 +1,5 @@
 import Footer from './components/Footer'
+import ConditionalFooter from './components/ConditionalFooter'
 import './globals.css'
 
 export const metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
-       <Footer></Footer>
+        <ConditionalFooter />
       </body>
     </html>
   )
