@@ -66,9 +66,7 @@ const MissonVision = () => {
                 </div>
               </div>
 
-              <div className="mission-vision-card-footer">
-                <div className="mission-vision-card-pattern"></div>
-              </div>
+        
             </div>
           ))}
         </div>

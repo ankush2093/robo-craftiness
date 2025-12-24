@@ -116,7 +116,7 @@ const Faq = () => {
                 <i className="bi bi-chat-dots-fill me-2"></i>
                 Still have questions?
               </h4>
-              <p className="mb-3">
+              <p className="mb-3 text-white">
                 Can't find the answer you're looking for? Please reach out to our friendly support team.
               </p>
               <a

@@ -1973,12 +1973,12 @@ a {
 
 .founder-swiper-wrapper {
   position: relative;
-  padding: 40px 0;
+  /* padding: 40px 0; */
   z-index: 1;
 }
 
 .founder-swiper {
-  padding: 20px 0 60px;
+  /* padding: 20px 0 60px; */
   overflow: visible;
 }
 
@@ -1995,7 +1995,7 @@ a {
 }
 
 .founder-card:hover {
-  transform: translateY(-10px);
+  /* transform: translateY(-10px); */
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 

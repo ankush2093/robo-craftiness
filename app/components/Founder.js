@@ -59,7 +59,7 @@ const Founder = () => {
       role: 'Software Engineer - IOT Role',
       qualification: 'B.TECH in Computer Science Engineering, Techno Partner | Robotics Specialist',
       bio: 'Expert in robotic design, automation, and industrial robotics applications.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces',
+      image: '/founder/ankush-tems.jpeg',
       social: {
         linkedin: 'https://linkedin.com',
         twitter: 'https://twitter.com',

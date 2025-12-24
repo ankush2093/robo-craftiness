@@ -18,7 +18,7 @@ import MobileBottomNav from './components/MobileBottomNav'
 
 
 export default function Home() {
-  const [showPopupRegister, setShowPopupRegister] = useState(null) // null = closed, string = course name
+  const [showPopupRegister, setShowPopupRegister] = useState(null)
   const [showSyllabus, setShowSyllabus] = useState(null)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -360,7 +360,7 @@ export default function Home() {
               {config.courses.map((course) => (
                 <SwiperSlide key={course.id}>
                   <div className="course-card fade-in">
-                    <img className="course-image" src="https://media.istockphoto.com/id/1414699113/photo/small-robot-assistant-work-with-graphic-display.jpg?s=612x612&w=0&k=20&c=gGfba4h97L1tFjVWkPTiZUlfNHtkrf0fHhsmkY4S5Ng=" alt="Courses" />
+                    <img className="course-image" src={course.banner} alt="Courses" />
 
                     <div className="course-header">
                       <div>
@@ -389,7 +389,7 @@ export default function Home() {
                       </button>
                     </div>
 
-                    <a href='' className='btn-course-price mt-2'>Staring form Rs 4999</a>
+                    <a href='' className='btn-course-price mt-2'>Staring form Rs {course.price}</a>
                   </div>
                 </SwiperSlide>
               ))}

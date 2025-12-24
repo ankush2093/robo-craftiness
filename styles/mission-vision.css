@@ -186,22 +186,8 @@
   font-weight: 500;
 }
 
-.mission-vision-card-footer {
-  margin-top: 2rem;
-  position: relative;
-  height: 60px;
-}
 
-.mission-vision-card-pattern {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: url('/images/pattern-2.jpg') repeat;
-  opacity: 0.05;
-  border-radius: 12px;
-}
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {
