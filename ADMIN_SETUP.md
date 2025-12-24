@@ -102,3 +102,4 @@ All user management endpoints require admin authentication:
 - Password hashing uses bcryptjs (bcrypt algorithm)
 - Sessions last 7 days (can be adjusted in login route)
 
+

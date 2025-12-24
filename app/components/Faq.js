@@ -66,24 +66,21 @@ const Faq = () => {
   return (
     <section className="section faq-section">
       <div className="container">
-        <div className="row justify-content-center mb-5">
-          <div className="col-lg-8 text-center">
-            <h2 className="section-title mb-3">
-              <i className="bi bi-question-circle-fill me-2 faq-title-icon"></i>
-              Frequently Asked Questions
-            </h2>
-            <p className="section-subtitle">
-              Answers to common questions about our courses and services
-            </p>
+        
+
+          <div className='common-title col-md-7 mx-auto text-center'>
+            <h4>Our Foundation</h4>
+            <h2> Frequently  <span>Asked Questions</span> </h2>
+            <p className='text-white'>Driving innovation through education and empowering the next generation of technology leaders</p>
           </div>
-        </div>
+   
 
         <div className="row justify-content-center">
           <div className="col-lg-10">
             <div className="faq-accordion">
               {faqs.map((faq, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="faq-item mb-3"
                 >
                   <div
@@ -94,7 +91,7 @@ const Faq = () => {
                       <i className={`bi ${faq.icon} faq-question-icon`}></i>
                       <span>{faq.question}</span>
                     </div>
-                    <i 
+                    <i
                       className={`bi ${openIndex === index ? 'bi-chevron-up' : 'bi-chevron-down'} faq-chevron`}
                     ></i>
                   </div>

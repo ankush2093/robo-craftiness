@@ -35,17 +35,13 @@ const MissonVision = () => {
   ]
 
   return (
-    <section id="mission-vision" className="mission-vision-section">
+    <section id="mission-vision" className="mission-vision-section section">
       <div className="container">
-        <div className="mission-vision-header">
-          <span className="mission-vision-badge">Our Foundation</span>
-          <h2 className="mission-vision-title">
-            Mission & <span className="mission-vision-title-highlight">Vision</span>
-          </h2>
-          <p className="mission-vision-subtitle">
-            Driving innovation through education and empowering the next generation of technology leaders
-          </p>
-        </div>
+         <div className='common-title col-md-7 mx-auto text-center'>
+            <h4>Our Foundation</h4>
+            <h2> Mission & <span>Vision</span> </h2>
+            <p>Driving innovation through education and empowering the next generation of technology leaders</p>
+          </div>
 
         <div className="mission-vision-grid">
           {missionVision.map((item, index) => (

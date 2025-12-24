@@ -27,7 +27,7 @@ const Founder = () => {
     },
     {
       id: 2,
-      name: 'Rajesh Kumar',
+      name: 'Deepak Kumar',
       role: 'CTO & Co-Founder',
       qualification: 'M.S. in Computer Science, Stanford | IoT Expert',
       bio: 'Tech innovator specializing in IoT architecture and embedded systems development.',
@@ -55,9 +55,9 @@ const Founder = () => {
     },
     {
       id: 4,
-      name: 'Amit Verma',
-      role: 'Lead Robotics Engineer',
-      qualification: 'B.E. in Mechanical Engineering, BITS Pilani | Robotics Specialist',
+      name: 'Ankush Kumar',
+      role: 'Software Engineer - IOT Role',
+      qualification: 'B.TECH in Computer Science Engineering, Techno Partner | Robotics Specialist',
       bio: 'Expert in robotic design, automation, and industrial robotics applications.',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces',
       social: {
@@ -72,10 +72,10 @@ const Founder = () => {
   return (
     <section className="founder-section section">
       <div className="container">
-        <div className="founder-header">
-          <h2 className="founder-title">Meet Our <span className="founder-title-highlight">Founders</span></h2>
-          <p className="founder-subtitle">The brilliant minds behind Robo Craftiness</p>
-        </div>
+          <div className='common-title col-md-7 mx-auto text-center'>
+            <h2> Meet Our <span>Founders</span> </h2>
+            <p>The brilliant minds behind Robo Craftiness</p>
+          </div>
 
         <div className="founder-swiper-wrapper">
           <Swiper

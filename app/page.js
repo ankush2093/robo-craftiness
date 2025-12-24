@@ -151,7 +151,7 @@ export default function Home() {
           </ul>
           <div className="nav-right">
             {/* Mobile Menu Toggle Button */}
-            <button 
+            <button
               className="mobile-menu-toggle"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
@@ -170,7 +170,7 @@ export default function Home() {
         <div className="mobile-sidebar-content">
           <div className="mobile-sidebar-header">
             <img src="/images/logo_craftiness.png" alt="RoboCraftiness" className="mobile-sidebar-logo" />
-            <button 
+            <button
               className="mobile-sidebar-close"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="Close menu"
@@ -260,22 +260,6 @@ export default function Home() {
                 <i className="fas fa-clock countdown-icon"></i>
               </div>
               <div className="countdown-title-wrapper">
-                <button
-                  onClick={() => setShowPopupRegister(true)}
-                  className="btn-register-popup"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--main-color) 0%, var(--seconadary-main-color) 100%)',
-                    color: 'white',
-                    border: 'none',
-                    padding: '12px 24px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontWeight: '600',
-                    marginBottom: '1rem'
-                  }}
-                >
-                  Register Now
-                </button>
                 <h2 className="countdown-title">
                   {isExpired ? '⏰ Enrollment Closed' : '⏳ Enrollment Ends In'}
                 </h2>
@@ -336,8 +320,11 @@ export default function Home() {
       {/* Courses Section */}
       <section id="courses" className="section">
         <div className="container">
-          <h2 className="section-title">Courses</h2>
-          <p className="section-subtitle">Choose the course that fits your career goals</p>
+          <div className='common-title col-md-7 mx-auto text-center'>
+            <h4>Our Golden Opportunity</h4>
+            <h2>Powerful  <span>Courses</span> </h2>
+            <p>Choose the course that fits your career goals</p>
+          </div>
           <div className="courses-swiper-wrapper">
             <Swiper
               modules={[Autoplay]}
@@ -426,8 +413,10 @@ export default function Home() {
       {/* Why Choose Us */}
       <section id="why-us" className="section why-section">
         <div className="container">
-          <h2 className="section-title">Why {config.brandName}?</h2>
-          <p className="section-subtitle">Everything you need to succeed in your career</p>
+          <div className='common-title col-md-7 mx-auto text-center'>
+            <h2> Why <span> {config.brandName}?</span> </h2>
+            <p>Everything you need to succeed in your career</p>
+          </div>
           <div className="why-grid">
             {config.whyChooseUs.map((item, index) => (
               <div key={index} className="why-card fade-in">

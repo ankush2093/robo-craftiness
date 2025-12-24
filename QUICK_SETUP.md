@@ -111,3 +111,4 @@ UPDATE admins SET password_hash = 'YOUR_GENERATED_HASH' WHERE username = 'admin'
 
 **Need Help?** Check `ADMIN_SETUP.md` for detailed instructions.
 
+

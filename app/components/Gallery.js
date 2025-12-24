@@ -93,23 +93,24 @@ const Gallery = () => {
 
   return (
     <>
-      <section id="gallery" className="gallery-section">
+      <section id="gallery" className="gallery-section section">
         <div className="container">
-          <div className="gallery-header">
-            <h2 className="gallery-title">Photo &nbsp;<span className="gallery-title-highlight">Gallery</span></h2>
+          <div className='common-title col-md-7 mx-auto text-center'>
+            <h4>Exclusive</h4>
+            <h2> Our <span>Gallery</span> </h2>
           </div>
 
           <div className="home_gallery-wrapper">
             <div className="home_gallery-grid">
               {galleryImages.map((image, index) => (
-                <div 
-                  key={image.id} 
+                <div
+                  key={image.id}
                   className="home_gallery-item"
                   data-index={index}
                   onClick={() => openLightbox(index)}
                 >
-                  <img 
-                    src={image.src} 
+                  <img
+                    src={image.src}
                     alt={image.alt}
                     loading="lazy"
                   />
@@ -125,7 +126,7 @@ const Gallery = () => {
       </section>
 
       {/* Lightbox Modal */}
-      <div 
+      <div
         className={`home_gallery-lightbox ${isLightboxOpen ? 'active' : ''}`}
         onClick={closeLightbox}
       >
@@ -143,8 +144,8 @@ const Gallery = () => {
             <div className="home_gallery-lightbox-counter">
               {currentIndex + 1} / {galleryImages.length}
             </div>
-            <img 
-              src={galleryImages[currentIndex].src} 
+            <img
+              src={galleryImages[currentIndex].src}
               alt={galleryImages[currentIndex].alt}
               className="home_gallery-lightbox-image"
             />

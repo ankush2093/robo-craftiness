@@ -67,14 +67,14 @@ const TestiMonial = () => {
   const generateRandomAvatars = () => {
     const positions = [
       { top: '15%', left: '10%' },
-      { top: '25%', left: '75%' },
+      { top: '14%', left: '88%' },
       { top: '45%', left: '15%' },
       { top: '50%', left: '80%' },
       { top: '65%', left: '25%' },
       { top: '70%', left: '70%' },
-      { top: '20%', left: '45%' },
-      { top: '35%', left: '50%' },
-      { top: '55%', left: '60%' },
+      { top: '91%', left: '5%' },
+      { top: '35%', left: '64%' },
+      { top: '80%', left: '60%' },
       { top: '80%', left: '40%' }
     ]
     
@@ -162,10 +162,11 @@ const TestiMonial = () => {
   return (
     <section className="section testimonial-section">
       <div className="container">
-        <div className="testimonial-header">
-          <h2 className="testimonial-title">From Our Students</h2>
-          <h3 className="testimonial-subtitle">Across <span className="highlight">12 Courses</span></h3>
-        </div>
+          <div className='common-title col-md-7 mx-auto text-center'>
+            {/* <h4>Our Foundation</h4> */}
+            <h2> From  <span>Our Students</span> </h2>
+            <p>Choose the course that fits your career goals</p>
+          </div>
 
         <div className="testimonial-grid">
           {/* Left Panel - Main Testimonial Card (col-4) */}

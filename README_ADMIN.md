@@ -114,3 +114,4 @@ ADMIN_SETUP.md (Detailed setup instructions)
 
 Happy managing! 🎉
 
+

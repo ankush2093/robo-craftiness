@@ -3,7 +3,6 @@
    ============================================ */
 
 .mission-vision-section {
-  padding: 100px 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   position: relative;
   overflow: hidden;
@@ -21,49 +20,6 @@
   z-index: 0;
 }
 
-.mission-vision-header {
-  text-align: center;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 1;
-}
-
-.mission-vision-badge {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background: linear-gradient(135deg, rgba(15, 61, 102, 0.1) 0%, rgba(122, 196, 66, 0.1) 100%);
-  color: var(--seconadary-main-color);
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 50px;
-  margin-bottom: 1rem;
-  border: 2px solid rgba(122, 196, 66, 0.2);
-}
-
-.mission-vision-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--main-color);
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.mission-vision-title-highlight {
-  background: linear-gradient(135deg, var(--main-color) 0%, var(--seconadary-main-color) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.mission-vision-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-light);
-  font-weight: 400;
-  max-width: 700px;
-  margin: 0 auto;
-}
 
 .mission-vision-grid {
   display: grid;
@@ -264,21 +220,7 @@
 }
 
 @media (max-width: 768px) {
-  .mission-vision-section {
-    padding: 60px 0;
-  }
 
-  .mission-vision-title {
-    font-size: 2rem;
-  }
-
-  .mission-vision-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .mission-vision-header {
-    margin-bottom: 40px;
-  }
 
   .mission-vision-card {
     padding: 2rem;
@@ -306,17 +248,6 @@
 }
 
 @media (max-width: 480px) {
-  .mission-vision-section {
-    padding: 50px 0;
-  }
-
-  .mission-vision-title {
-    font-size: 1.75rem;
-  }
-
-  .mission-vision-subtitle {
-    font-size: 1rem;
-  }
 
   .mission-vision-card {
     padding: 1.5rem;

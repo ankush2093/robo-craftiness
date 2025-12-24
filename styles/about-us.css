@@ -3,7 +3,6 @@
    ============================================ */
 
 .about-us-section {
-  padding: 80px 0;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   position: relative;
   overflow: hidden;
@@ -11,7 +10,7 @@
   background-position: center;
   background-attachment: fixed;
   background-blend-mode: multiply;
-  min-height: 850px;
+  min-height: 520px;
 }
 
 .about-us-section::before {
@@ -215,9 +214,7 @@
 }
 
 @media (max-width: 768px) {
-  .about-us-section {
-    padding: 60px 0;
-  }
+
 
   .about-us-title {
     font-size: 2rem;
@@ -248,9 +245,7 @@
 }
 
 @media (max-width: 480px) {
-  .about-us-section {
-    padding: 50px 0;
-  }
+
 
   .about-us-content {
     gap: 2rem;

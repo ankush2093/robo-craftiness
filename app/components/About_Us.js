@@ -17,7 +17,7 @@ const About_Us = () => {
   ]
 
   return (
-    <section id="about-us" className="about-us-section">
+    <section id="about-us" className="about-us-section section">
       <div className="container">
         <div className="about-us-content">
           {/* Left Side - Content */}
@@ -48,7 +48,7 @@ const About_Us = () => {
           </div>
 
           {/* Right Side - Image */}
-          <div className="about-us-image-wrapper">
+          <div className="about-us-image-wrapper d-none">
             <div className="about-us-image-container">
               <img 
                 src={aboutImage}

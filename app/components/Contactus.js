@@ -19,11 +19,11 @@ const Contactus = () => {
   }
 
   return (
-    <section id="contact" className="contact-section">
+    <section id="contact" className="contact-section section">
       <div className="container">
-        <div className="contact-header">
-          <h2 className="contact-title">Get In <span className="contact-title-highlight">Touch</span></h2>
-          <p className="contact-subtitle">We'd love to hear from you. Reach out to us through any of these channels.</p>
+        <div className='common-title col-md-7 mx-auto text-center'>
+          <h2> Get In <span>Touch</span> </h2>
+          <p>We'd love to hear from you. Reach out to us through any of these channels.</p>
         </div>
 
         <div className="contact-grid">
@@ -35,7 +35,7 @@ const Contactus = () => {
             <div className="contact-card-content">
               <h3 className="contact-card-title">Email Us</h3>
               <p className="contact-card-description">Send us an email anytime</p>
-              <a 
+              <a
                 href={`mailto:${contactInfo.email}`}
                 className="contact-link email-link"
               >
@@ -55,7 +55,7 @@ const Contactus = () => {
             <div className="contact-card-content">
               <h3 className="contact-card-title">Call Us</h3>
               <p className="contact-card-description">Speak with our team</p>
-              <a 
+              <a
                 href={`tel:${contactInfo.phone.replace(/[^0-9+]/g, '')}`}
                 className="contact-link phone-link"
               >
